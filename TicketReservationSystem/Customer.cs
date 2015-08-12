@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace TicketReservationSystem
 {
-    class Customer
+    public class Customer
     {
         protected string loginID, password, name, customerType;
-        protected int ic, contactNum;
-        private static int customerCount = 0;
+        protected string ic, contactNum;
+        //private static int customerCount = 0;
 
         public Customer() { }
 
         public Customer(string loginID, string password, string customerType,
-                        string name, int ic, int contactNum)
+                        string name, string ic, string contactNum)
         {
             setLogin(loginID, password);
             setCustomerInfo(customerType, name, ic, contactNum);
             /* Increment every time when this function is called */
-            customerCount++;
+            //customerCount++;
         }
 
         public void setLogin(string loginID, string password)
@@ -29,12 +29,18 @@ namespace TicketReservationSystem
             this.password = password;
         }
 
-        public void setCustomerInfo(string customerType, string name, int ic, int contactNum)
+        public void setCustomerInfo(string customerType, string name, string ic, string contactNum)
         {
             this.customerType = customerType;
             this.name = name;
             this.ic = ic;
             this.contactNum = contactNum;
         }
+
+        public string getLoginID()
+        { return this.loginID; }
+
+        public string getCustomerName()
+        { return this.name; }
     }
 }
