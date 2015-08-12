@@ -19,7 +19,7 @@ namespace TicketReservationSystem
         private OleDbCommand cmd = new OleDbCommand();
 
         private string connString =
-            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\CSharp\TicketReservationDataBase.mdb";
+            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\CSharp\TicketReservationSystem\TicketReservationDataBase.mdb";
 
         public UserProfile()
         {

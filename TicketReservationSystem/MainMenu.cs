@@ -35,12 +35,14 @@ namespace TicketReservationSystem
 
         private void btnReserve_Click_1(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ReservationForm rf = new ReservationForm(customer);
+            rf.ShowDialog();
         }
 
         private void MainMenu_Load_1(object sender, EventArgs e)
         {
-            lblCustomerID.Text = "Welcome! " + customer.getLoginID();
+            //lblCustomerID.Text = "Welcome! " + customer.getLoginID();
         }
     }
 }
