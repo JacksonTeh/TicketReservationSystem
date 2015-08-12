@@ -29,7 +29,7 @@ namespace TicketReservationSystem
         private void btnProfile_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            UserProfile profile = new UserProfile();
+            UserProfile profile = new UserProfile(customer);
             profile.ShowDialog();
         }
 
