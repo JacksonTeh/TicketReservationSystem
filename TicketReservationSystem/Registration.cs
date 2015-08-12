@@ -120,7 +120,7 @@ namespace TicketReservationSystem
 
                     string loginID = dataTable.Rows[0][0].ToString();
                     //string password = dataTable.Rows[0][1].ToString();
-                    string customerName = dataTable.Rows[0][2].ToString();
+                    string custName = dataTable.Rows[0][2].ToString();
                     //string customerType = dataTable.Rows[0][5].ToString();
                     //int ic = Convert.ToInt32(dataTable.Rows[0][3].ToString());
                     //int contactNum = Convert.ToInt32(dataTable.Rows[0][4].ToString());
