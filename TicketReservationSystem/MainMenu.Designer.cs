@@ -77,7 +77,6 @@
             this.Controls.Add(this.lblCustomerID);
             this.Name = "MainMenu";
             this.Text = "MainMenu";
-            this.Load += new System.EventHandler(this.MainMenu_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 

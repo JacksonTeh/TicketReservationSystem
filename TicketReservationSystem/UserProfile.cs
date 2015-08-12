@@ -13,7 +13,8 @@ namespace TicketReservationSystem
 {
     public partial class UserProfile : Form
     {
-        string id, password, name, ic, contactNum;
+        string id = "", customerType = "";
+        Customer customer;
 
         private OleDbConnection profileConn;
         private OleDbCommand cmd = new OleDbCommand();
@@ -27,74 +28,41 @@ namespace TicketReservationSystem
             InitializeComponent();
         }
 
-        public UserProfile(string id, string password, string name,
-                            string ic, string contactNum)
+        public UserProfile(Customer customer)
         {
+            profileConn = new OleDbConnection(connString);
+            this.customer = customer;
             InitializeComponent();
-            string loginID = id;
-            txtPassword.Text = password;
-            txtName.Text = name;
-            txtIC.Text = ic;
-            txtContactNum.Text = contactNum;
+
+            id = customer.getLoginID();
+            txtPassword.Text = customer.getPassword();
+            txtName.Text = customer.getCustomerName();
+            txtIC.Text = customer.getIC();
+            txtContactNum.Text = customer.getContactNum();
+            customerType = customer.getCustomerType();
         }
-
-        /*
-        private string selectCommandString(string loginID, string password, string name,
-                                            string ic, string contactNum)
-        {
-            string cmdString = "UPDATE CustomerDetail SET ";
-
-            if (!String.IsNullOrEmpty(password))
-            {
-                cmdString += "[Password] = @pass, ";
-            }
-
-            if (!String.IsNullOrEmpty(name))
-            {
-                cmdString += "[Name] = @name, ";
-            }
-
-            if (!String.IsNullOrEmpty(ic))
-            {
-                cmdString += "[IC] = @ic, ";
-            }
-
-            if (!String.IsNullOrEmpty(name))
-            {
-                cmdString += "[Name] = @name, ";
-            }
-
-            if (!String.IsNullOrEmpty(name))
-            {
-                cmdString += "[Name] = @name, ";
-            }
-
-            return cmdString;
-        }*/
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            string loginID = this.id;
-            string password = txtPassword.Text;
-            string name = txtName.Text;
-            string ic = txtIC.Text;
-            string contactNum = txtContactNum.Text;
-
             cmd.Connection = profileConn;
             cmd.CommandText =
-                "UPDATE CustomerDetail SET "
-                + "[Password] = @pass, [Name] = @name, [IC] = @ic, [ContactNum] = @contactNum "
-                + "WHERE [LoginID] = @id";
-
+                "UPDATE CustomerDetail SET [Password] = '" + txtPassword.Text +
+                "' ,[Name] = '" + txtName.Text +
+                "' ,[IC] = '" + txtIC.Text +
+                "' ,[contactNum] = '" + txtContactNum.Text +
+                "' WHERE [LoginID] = '" + id + "'";
             try
             {
                 profileConn.Open();
 
-                cmd.Parameters.AddWithValue("@id", loginID);
-                cmd.Parameters.AddWithValue("@pass", password);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@ic", ic);
-                cmd.Parameters.AddWithValue("@contactNum", contactNum);
+                cmd.Parameters.AddWithValue("", txtPassword.Text);
+                cmd.Parameters.AddWithValue("", txtName.Text);
+                cmd.Parameters.AddWithValue("", txtIC.Text);
+                cmd.Parameters.AddWithValue("", txtContactNum.Text);
+
+                /* Update customer class */
+                Customer c = new Customer(id, txtPassword.Text, customerType,
+                                        txtName.Text, txtIC.Text, txtContactNum.Text);
 
                 int temp = cmd.ExecuteNonQuery();
 
@@ -108,6 +76,10 @@ namespace TicketReservationSystem
                 }
 
                 profileConn.Close();
+
+                this.Hide();
+                MainMenu m = new MainMenu(c);
+                m.ShowDialog();
             }
             catch (Exception err)
             {
