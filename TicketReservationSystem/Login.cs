@@ -17,7 +17,7 @@ namespace TicketReservationSystem
         private OleDbCommand cmd = new OleDbCommand();
 
         private string connString =
-            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\CSharp\TicketReservationSystem\TicketReservationDataBase.mdb";
+            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\CSharp\TicketReservationDataBase.mdb";
 
         public Login()
         {
@@ -45,16 +45,16 @@ namespace TicketReservationSystem
                     MessageBox.Show("Welcome! " + txtID.Text);
 
                     string loginID = dataTable.Rows[0][0].ToString();
-                    //string password = dataTable.Rows[0][1].ToString();
+                    string password = dataTable.Rows[0][1].ToString();
                     string name = dataTable.Rows[0][2].ToString();
-                    //string customerType = dataTable.Rows[0][5].ToString();
-                    //int ic = Convert.ToInt32(dataTable.Rows[0][3].ToString());
-                    //int contactNum = Convert.ToInt32(dataTable.Rows[0][4].ToString());
+                    string ic = dataTable.Rows[0][3].ToString();
+                    string contactNum = dataTable.Rows[0][4].ToString();
+                    string customerType = dataTable.Rows[0][5].ToString();
 
-                    //Customer customer = new Customer(loginID, password, customerType, name, ic, contactNum);
+                    Customer customer = new Customer(loginID, password, customerType, name, ic, contactNum);
 
                     this.Hide();
-                    MainMenu mainMenu = new MainMenu(loginID, name);
+                    MainMenu mainMenu = new MainMenu(customer);
                     mainMenu.ShowDialog();
                 }
                 else

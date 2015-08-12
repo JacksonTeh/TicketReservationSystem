@@ -12,24 +12,25 @@ namespace TicketReservationSystem
 {
     public partial class MainMenu : Form
     {
-        public string id;
-        public string name;
+        Customer customer;
 
         public MainMenu()
         {
             InitializeComponent();
         }
 
-        public MainMenu(string id, string name)
+        //public MainMenu(string id, string name)
+        public MainMenu(Customer cust)
         {
-            this.id = id;
-            this.name = name;
+            customer = cust;
             InitializeComponent();
         }
 
         private void btnProfile_Click_1(object sender, EventArgs e)
         {
-
+            this.Hide();
+            UserProfile profile = new UserProfile();
+            profile.ShowDialog();
         }
 
         private void btnReserve_Click_1(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace TicketReservationSystem
 
         private void MainMenu_Load_1(object sender, EventArgs e)
         {
-            lblCustomerID.Text = "Welcome! " + id;
+            lblCustomerID.Text = "Welcome! " + customer.getLoginID();
         }
     }
 }

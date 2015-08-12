@@ -17,7 +17,7 @@ namespace TicketReservationSystem
         private OleDbCommand cmd = new OleDbCommand();
 
         private string connString =
-            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\CSharp\TicketReservationSystem\TicketReservationDataBase.mdb";
+            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\CSharp\TicketReservationDataBase.mdb";
 
         public Registration()
         {
@@ -26,51 +26,32 @@ namespace TicketReservationSystem
         }
 
         private bool validation(string loginID, string password, string name,
-                                string ic, string contactNum, int comboIndex)
+                string ic, string contactNum, int comboIndex)
         {
-            bool valid;
 
-            valid = validateEmptyString(loginID, password, name, ic, contactNum, comboIndex);
-
-            if (valid)
+            if (validateEmptyID(loginID) &&
+                validateEmptyPassword(password) && 
+                validateEmptyName(name) &&
+                validateEmptyIC(ic) &&
+                validateEmptyContactNum(contactNum) &&
+                validateEmptyCustomerType(comboIndex) &&
+                validateICFormat(ic) &&
+                validateContactNumFormat(contactNum))
             {
-                valid = validateFormat(ic, contactNum);
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
-            return valid;
         }
 
-        private bool validateEmptyString(string loginID, string password, string name,
-                                        string ic, string contactNum, int comboIndex)
+        public bool validateEmptyID(string loginID)
         {
             if (String.IsNullOrEmpty(loginID))
             {
                 MessageBox.Show("Login ID is empty");
-                return false;
-            }
-            else if (String.IsNullOrEmpty(password))
-            {
-                MessageBox.Show("Password is empty");
-                return false;
-            }
-            else if (String.IsNullOrEmpty(name))
-            {
-                MessageBox.Show("Name is empty");
-                return false;
-            }
-            else if (String.IsNullOrEmpty(ic))
-            {
-                MessageBox.Show("IC is empty");
-                return false;
-            }
-            else if (String.IsNullOrEmpty(contactNum))
-            {
-                MessageBox.Show("Contact Number is empty");
-                return false;
-            }
-            else if (comboIndex == -1)
-            {
-                MessageBox.Show("Customer Type is not selected");
                 return false;
             }
             else
@@ -79,16 +60,89 @@ namespace TicketReservationSystem
             }
         }
 
-        private bool validateFormat(string ic, string contactNum)
+        public bool validateEmptyPassword(string password)
+        {
+            if (String.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Password ID is empty");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool validateEmptyName(string name)
+        {
+            if (String.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Name is empty");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool validateEmptyIC(string ic)
+        {
+            if (String.IsNullOrEmpty(ic))
+            {
+                MessageBox.Show("IC is empty");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool validateEmptyContactNum(string contactNum)
+        {
+            if (String.IsNullOrEmpty(contactNum))
+            {
+                MessageBox.Show("contactNum is empty");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool validateEmptyCustomerType(int customerIndex)
+        {
+            if (customerIndex == -1)
+            {
+                MessageBox.Show("Customer Type is not select");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool validateICFormat(string ic)
         {
             int integer;
-
             if (!int.TryParse(ic, out integer))
             {
                 MessageBox.Show("Invalid IC format");
                 return false;
             }
-            else if (!int.TryParse(contactNum, out integer))
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool validateContactNumFormat(string contactNum)
+        {
+            int integer;
+            if (!int.TryParse(contactNum, out integer))
             {
                 MessageBox.Show("Invalid contact number format");
                 return false;
@@ -99,14 +153,14 @@ namespace TicketReservationSystem
             }
         }
 
-        private bool validateIDandName(string id, string name)
+        private bool validateID(string id)
         {
+            bool valid = true;
             try
             {
                 registerConn.Open();
                 string selectString =
-                    "Select * from CustomerDetail where LoginID = '" + id +
-                                                    "' and Password = '" + name + "'";
+                    "Select * from CustomerDetail where LoginID = '" + id + "'";
 
                 OleDbDataAdapter da = new OleDbDataAdapter(selectString, registerConn);
                 OleDbCommandBuilder cBuilder = new OleDbCommandBuilder(da);
@@ -116,23 +170,17 @@ namespace TicketReservationSystem
 
                 if (dataTable.Rows.Count > 0)
                 {
-                    //MessageBox.Show("Welcome! " + txtID.Text);
-
-                    string loginID = dataTable.Rows[0][0].ToString();
-                    //string password = dataTable.Rows[0][1].ToString();
-                    string custName = dataTable.Rows[0][2].ToString();
-                    //string customerType = dataTable.Rows[0][5].ToString();
-                    //int ic = Convert.ToInt32(dataTable.Rows[0][3].ToString());
-                    //int contactNum = Convert.ToInt32(dataTable.Rows[0][4].ToString());
-
-                    //Customer customer = new Customer(loginID, password, customerType, name, ic, contactNum);
+                    MessageBox.Show("ID Is Already Exists! ");
+                    valid = false;
                 }
                 else
                 {
-                    MessageBox.Show("ID or Password is incorrect! Please try again");
+                    MessageBox.Show(id + " can be use");
+                    valid = true;
 
                 }
                 registerConn.Close();
+                return valid;
             }
             catch (Exception err)
             {
