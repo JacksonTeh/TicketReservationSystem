@@ -42,7 +42,7 @@ namespace TicketReservationSystem
 
         private void MainMenu_Load_1(object sender, EventArgs e)
         {
-            //lblCustomerID.Text = "Welcome! " + customer.getLoginID();
+            lblCustomerID.Text = "Welcome! " + customer.getLoginID();
         }
     }
 }
