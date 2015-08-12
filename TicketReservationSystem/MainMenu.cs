@@ -24,23 +24,19 @@ namespace TicketReservationSystem
         {
             customer = cust;
             InitializeComponent();
+            lblCustomerID.Text = "Welcome! " + customer.getLoginID();
         }
 
         private void btnProfile_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            UserProfile profile = new UserProfile();
+            UserProfile profile = new UserProfile(customer);
             profile.ShowDialog();
         }
 
         private void btnReserve_Click_1(object sender, EventArgs e)
         {
 
-        }
-
-        private void MainMenu_Load_1(object sender, EventArgs e)
-        {
-            lblCustomerID.Text = "Welcome! " + customer.getLoginID();
         }
     }
 }
