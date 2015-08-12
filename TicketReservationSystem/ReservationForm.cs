@@ -189,14 +189,9 @@ namespace TicketReservationSystem
 
                         if (dataTable.Rows.Count > 0)
                         {
-                            string availabiliy = dataTable.Rows[0][2].ToString();
-
-                            if (availabiliy == "True")
-                            {
-                                btnSeat[i, j].Enabled = false;
-                                btnSeat[i, j].BackColor = Color.Red;
-                                seatLeft++;
-                            }
+                            btnSeat[i, j].Enabled = false;
+                            btnSeat[i, j].BackColor = Color.Red;
+                            seatLeft++;
                         }
 
                         reservationConn.Close();
