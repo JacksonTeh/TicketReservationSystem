@@ -40,7 +40,19 @@ namespace TicketReservationSystem
         public string getLoginID()
         { return this.loginID; }
 
+        public string getPassword()
+        { return this.password; }
+
         public string getCustomerName()
         { return this.name; }
+
+        public string getIC()
+        { return this.ic; }
+
+        public string getContactNum()
+        { return this.contactNum; }
+
+        public string getCustomerType()
+        { return this.customerType; }
     }
 }
