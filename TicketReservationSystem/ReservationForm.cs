@@ -15,11 +15,16 @@ namespace TicketReservationSystem
     {
         Customer customer;
         Panel myPanel = new Panel();
-        Button[,] btnSeat = new Button[15, 4];        Label[] label = new Label[20];        int column = 2, rows = 15, seatLeft;        private OleDbConnection reservationConn;
+        Button[,] btnSeat = new Button[15, 4];
+        Label[] label = new Label[20];
+        int column = 2, rows = 15, seatLeft;
+
+        private OleDbConnection reservationConn;
         private OleDbCommand cmd = new OleDbCommand();
 
         private string connString =
-            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\CSharp\TicketReservationSystem\TicketReservationDataBase.mdb";
+            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\CSharp\TicketReservationSystem\TicketReservationDataBase.mdb";
+
         public ReservationForm()
         {
             reservationConn = new OleDbConnection(connString);
@@ -48,9 +53,11 @@ namespace TicketReservationSystem
             {
                 label[i] = new Label();
                 label[i].Size = new Size(28, 28);
-                char c = Convert.ToChar(65 + i);                label[i].Text = Convert.ToString(c);
+                char c = Convert.ToChar(65 + i);
+                label[i].Text = Convert.ToString(c);
                 label[i].Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                label[i].Location = new Point(20, 10 + 28 * i);                myPanel.Controls.Add(label[i]);
+                label[i].Location = new Point(20, 10 + 28 * i);
+                myPanel.Controls.Add(label[i]);
             }
             
             Controls.Add(myPanel);
@@ -81,7 +88,7 @@ namespace TicketReservationSystem
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-
+            MessageBoxButtons.OKCancel.;
         }
 
         private void btnInfo_Click(object sender, EventArgs e)

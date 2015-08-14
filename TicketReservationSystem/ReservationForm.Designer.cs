@@ -201,9 +201,9 @@
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F);
             this.btnConfirm.Location = new System.Drawing.Point(446, 369);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(92, 34);
+            this.btnConfirm.Size = new System.Drawing.Size(177, 34);
             this.btnConfirm.TabIndex = 15;
-            this.btnConfirm.Text = "Confirm";
+            this.btnConfirm.Text = "Confirm Booking";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
