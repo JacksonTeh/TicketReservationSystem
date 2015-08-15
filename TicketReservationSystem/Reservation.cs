@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicketReservationSystem
 {
-    class Reservation
+    public class Reservation
     {
         protected Customer customer;
         protected TripInfo tripInfo;

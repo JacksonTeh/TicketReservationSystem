@@ -21,7 +21,7 @@ namespace TicketReservationSystem
             this.to = to;
             this.depart = depart;
             this.arrive = arrive;
-            this.price = price;
+            setPrice(price);
         }
 
         public string getCode()
@@ -41,5 +41,8 @@ namespace TicketReservationSystem
 
         public double getPrice()
         { return price; }
+
+        public void setPrice(double price)
+        { this.price = price; }
     }
 }

@@ -37,8 +37,15 @@ namespace TicketReservationSystem
         private void btnReserve_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            ReservationForm rf = new ReservationForm(customer);
-            rf.ShowDialog();
+            SelectTrip st = new SelectTrip(customer);
+            st.ShowDialog();
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login login = new Login();
+            login.ShowDialog();
         }
     }
 }

@@ -69,11 +69,23 @@
       <DependentUpon>Registration.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservation.cs" />
+    <Compile Include="ReservationDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservationDetail.Designer.cs">
+      <DependentUpon>ReservationDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReservationForm.Designer.cs">
       <DependentUpon>ReservationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectTrip.Designer.cs">
+      <DependentUpon>SelectTrip.cs</DependentUpon>
     </Compile>
     <Compile Include="TicketReservationDataBaseDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -106,8 +118,14 @@
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReservationDetail.resx">
+      <DependentUpon>ReservationDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReservationForm.resx">
       <DependentUpon>ReservationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectTrip.resx">
+      <DependentUpon>SelectTrip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserProfile.resx">
       <DependentUpon>UserProfile.cs</DependentUpon>

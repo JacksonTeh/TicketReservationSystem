@@ -31,6 +31,7 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnReserve = new System.Windows.Forms.Button();
             this.lblCustomerID = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProfile
@@ -67,11 +68,24 @@
             this.lblCustomerID.Size = new System.Drawing.Size(0, 24);
             this.lblCustomerID.TabIndex = 3;
             // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F);
+            this.btnLogOut.Location = new System.Drawing.Point(218, 264);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(7);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(245, 51);
+            this.btnLogOut.TabIndex = 6;
+            this.btnLogOut.Text = "LogOut";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 326);
+            this.ClientSize = new System.Drawing.Size(678, 353);
+            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.btnReserve);
             this.Controls.Add(this.lblCustomerID);
@@ -87,5 +101,6 @@
         private System.Windows.Forms.Button btnProfile;
         private System.Windows.Forms.Button btnReserve;
         private System.Windows.Forms.Label lblCustomerID;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
