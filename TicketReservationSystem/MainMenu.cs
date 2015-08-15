@@ -18,8 +18,7 @@ namespace TicketReservationSystem
         {
             InitializeComponent();
         }
-
-        //public MainMenu(string id, string name)
+        
         public MainMenu(Customer cust)
         {
             customer = cust;
@@ -46,6 +45,13 @@ namespace TicketReservationSystem
             this.Hide();
             Login login = new Login();
             login.ShowDialog();
+        }
+
+        private void btnTransaction_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ViewTransaction vt = new ViewTransaction(customer);
+            vt.ShowDialog();
         }
     }
 }

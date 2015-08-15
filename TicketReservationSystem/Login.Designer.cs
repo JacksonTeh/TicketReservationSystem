@@ -35,11 +35,17 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSales = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSales);
             this.groupBox1.Controls.Add(this.registerButton);
             this.groupBox1.Controls.Add(this.loginButton);
             this.groupBox1.Controls.Add(this.txtPass);
@@ -116,16 +122,52 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Login ID";
             // 
+            // btnSales
+            // 
+            this.btnSales.Location = new System.Drawing.Point(45, 188);
+            this.btnSales.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSales.Name = "btnSales";
+            this.btnSales.Size = new System.Drawing.Size(136, 32);
+            this.btnSales.TabIndex = 6;
+            this.btnSales.Text = "Best Sales";
+            this.btnSales.UseVisualStyleBackColor = true;
+            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Customer,
+            this.TotalTransaction});
+            this.dataGridView1.Location = new System.Drawing.Point(43, 302);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(338, 150);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // Customer
+            // 
+            this.Customer.HeaderText = "Customer";
+            this.Customer.Name = "Customer";
+            this.Customer.Width = 145;
+            // 
+            // TotalTransaction
+            // 
+            this.TotalTransaction.HeaderText = "TotalTransaction";
+            this.TotalTransaction.Name = "TotalTransaction";
+            this.TotalTransaction.Width = 150;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 335);
+            this.ClientSize = new System.Drawing.Size(421, 488);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Login";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -139,6 +181,10 @@
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSales;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalTransaction;
     }
 }
 

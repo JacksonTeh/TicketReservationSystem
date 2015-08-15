@@ -9,12 +9,12 @@ namespace TicketReservationSystem
     public class TripInfo
     {
         protected string code, from, to;
-        protected DateTime depart, arrive;
+        protected string depart, arrive;
         protected double price;
 
         public TripInfo() { }
 
-        public TripInfo(string code, string from, string to, DateTime depart, DateTime arrive, double price)
+        public TripInfo(string code, string from, string to, string depart, string arrive, double price)
         {
             this.code = code;
             this.from = from;
@@ -33,10 +33,10 @@ namespace TicketReservationSystem
         public string getDestination()
         { return to; }
 
-        public DateTime getDepart()
+        public string getDepart()
         { return depart; }
 
-        public DateTime getArrive()
+        public string getArrive()
         { return arrive; }
 
         public double getPrice()

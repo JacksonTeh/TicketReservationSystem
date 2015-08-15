@@ -83,7 +83,6 @@ namespace TicketReservationSystem
 
                     OleDbDataAdapter da = new OleDbDataAdapter(selectString, reservationConn);
                     da.SelectCommand.Parameters.AddWithValue("@fc", flightCode);
-                    //da.SelectCommand.Parameters.AddWithValue("@dest", destination);
                     OleDbCommandBuilder cBuilder = new OleDbCommandBuilder(da);
 
                     DataTable dataTable = new DataTable();
@@ -112,12 +111,11 @@ namespace TicketReservationSystem
                         reservationConn.Open();
 
                         cmd.Connection = reservationConn;
-                        cmd.CommandText = "INSERT INTO ReservationDetail ([LoginID], [FlightCode], [SeatRow], [SeatNumber]) values (@id, @fc, @row, @col)";
-
-                        cmd.Parameters.AddWithValue("@id", customer.getLoginID());
-                        cmd.Parameters.AddWithValue("@fc", flightCode);
-                        cmd.Parameters.AddWithValue("@row", row);
-                        cmd.Parameters.AddWithValue("@col", col);
+                        cmd.CommandText = "INSERT INTO ReservationDetail ([LoginID], [FlightCode], [SeatRow], [SeatNumber])" +
+                                            "VALUES('" + customer.getLoginID() + "','"
+                                                       + flightCode + "','"
+                                                       + row + "','"
+                                                       + col + "')";
 
                         int temp = cmd.ExecuteNonQuery();
 
@@ -147,11 +145,6 @@ namespace TicketReservationSystem
                 Reservation r = new Reservation(customer, this.ti, "");
                 ReservationDetail st = new ReservationDetail(r);
                 st.ShowDialog();
-
-            }
-            else if (dialogResult == DialogResult.Cancel)
-            {
-                //do something else
             }
         }
 

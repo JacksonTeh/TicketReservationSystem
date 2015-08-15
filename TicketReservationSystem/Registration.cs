@@ -238,6 +238,33 @@ namespace TicketReservationSystem
                     }
 
                     registerConn.Close();
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                    registerConn.Close();
+                }
+
+                cmd.CommandText =
+                    "INSERT INTO TopSales ([LoginID])" +
+                    "VALUES('" + loginID + "')";
+
+                try
+                {
+                    registerConn.Open();
+
+                    int temp = cmd.ExecuteNonQuery();
+
+                    if (temp > 0)
+                    {
+                        //MessageBox.Show("Insert Successfully!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Not Able to insert customer's ID!");
+                    }
+
+                    registerConn.Close();
 
                     this.Hide();
                     Login login = new Login();

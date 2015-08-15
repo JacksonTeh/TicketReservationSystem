@@ -49,18 +49,18 @@ namespace TicketReservationSystem
             }
             else
             {
+                string origin = cbxOrigin.SelectedItem.ToString();
+                string destination = cbxDestination.SelectedItem.ToString();
+
                 try
                 {
-                    string origin = cbxOrigin.SelectedItem.ToString();
-                    string destination = cbxDestination.SelectedItem.ToString();
-
                     reservationConn.Open();
                     string selectString =
-                        "Select * from Trip where Origin = '" + origin + "' and Destination = '" + destination + "'";
-                    
+                        "Select * from Trip where Origin = @ori and Destination = @dest";
+
                     OleDbDataAdapter da = new OleDbDataAdapter(selectString, reservationConn);
-                    //da.SelectCommand.Parameters.AddWithValue("@ori", origin);
-                    //da.SelectCommand.Parameters.AddWithValue("@dest", destination);
+                    da.SelectCommand.Parameters.AddWithValue("@ori", origin);
+                    da.SelectCommand.Parameters.AddWithValue("@dest", destination);
                     OleDbCommandBuilder cBuilder = new OleDbCommandBuilder(da);
 
                     DataTable dataTable = new DataTable();
@@ -71,6 +71,10 @@ namespace TicketReservationSystem
                         txtDepart.Text = dataTable.Rows[0][3].ToString();
                         txtArrive.Text = dataTable.Rows[0][4].ToString();
                         txtCode.Text = dataTable.Rows[0][0].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to display info!");
                     }
 
                     reservationConn.Close();
@@ -115,8 +119,8 @@ namespace TicketReservationSystem
             {
                 string o = cbxOrigin.SelectedItem.ToString();
                 string d = cbxDestination.SelectedItem.ToString();
-                DateTime dt = Convert.ToDateTime(txtArrive.Text);
-                DateTime at = Convert.ToDateTime(txtDepart.Text);
+                string dt = txtArrive.Text;
+                string at = txtDepart.Text;
                 string fc = txtCode.Text;
 
                 TripInfo tripInfo = new TripInfo(fc, o, d, dt, at, 0.0);

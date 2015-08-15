@@ -77,5 +77,36 @@ namespace TicketReservationSystem
             Registration register = new Registration();
             register.ShowDialog();
         }
+
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                loginConn.Open();
+
+                string strSelect = "SELECT * FROM TopSales";
+                dataGridView1.DataSource = null;
+                dataGridView1.Rows.Clear();
+                dataGridView1.Refresh();
+
+                OleDbDataAdapter da = new OleDbDataAdapter(strSelect, loginConn);
+                OleDbCommandBuilder cBuilder = new OleDbCommandBuilder(da);
+                DataTable dataTable = new DataTable();
+                da.Fill(dataTable);
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    dataGridView1.Rows.Add(dataTable.Rows[i][0], dataTable.Rows[i][1]);
+                    dataGridView1.Sort(dataGridView1.Columns["TotalTransaction"], ListSortDirection.Descending);
+                }
+
+                loginConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                loginConn.Close();
+            }
+        }
     }
 }

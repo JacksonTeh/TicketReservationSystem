@@ -10,7 +10,6 @@ namespace TicketReservationSystem
     {
         protected string loginID, password, name, customerType;
         protected string ic, contactNum;
-        //private static int customerCount = 0;
 
         public Customer() { }
 
@@ -19,8 +18,6 @@ namespace TicketReservationSystem
         {
             setLogin(loginID, password);
             setCustomerInfo(customerType, name, ic, contactNum);
-            /* Increment every time when this function is called */
-            //customerCount++;
         }
 
         public void setLogin(string loginID, string password)
